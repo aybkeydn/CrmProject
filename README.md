@@ -5,9 +5,10 @@ Bu proje, şirketlerin müşteri, teklif ve kullanıcı yönetimini kolaylaştı
 ![image](https://github.com/user-attachments/assets/7d0c6c89-5b12-4fba-97f1-7da59fb57460)
 ![image](https://github.com/user-attachments/assets/a9cc0123-8ffc-4291-ab2f-7c7638e20c7a)
 ![image](https://github.com/user-attachments/assets/75e73395-cc90-4f90-b2e2-9d8092152fa0)
+![image](https://github.com/user-attachments/assets/90f0441b-1f2b-4669-8189-7eda470508ae)
 ![image](https://github.com/user-attachments/assets/664301be-26d9-46e3-92ea-31ec7da44a90)
 ![image](https://github.com/user-attachments/assets/7aafd044-c9a3-49b8-9804-19a76f439acd)
-![image](https://github.com/user-attachments/assets/003155dd-81e8-418b-8750-a29135d63973)
+
 
 
 
