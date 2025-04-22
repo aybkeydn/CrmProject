@@ -1,101 +1,102 @@
-Bu CRM projesi oldukça kapsamlı bir içeriğe sahiptir.Şirketlerin müşteri, teklif ve kullanıcı yönetimini kolaylaştıran, ASP.NET Core tabanlı  etkili bir CRM (Müşteri İlişkileri Yönetimi) uygulamasıdır.
+# Most CRM
 
-📌 Özellikler
-✅ Müşteri kayıt ve yönetimi (Yeni müşteri ekleme, güncelleme, silme)
+**Most CRM**, şirketlerin müşteri, teklif ve kullanıcı yönetimini kolaylaştıran, ASP.NET Core tabanlı etkili bir CRM (Müşteri İlişkileri Yönetimi) uygulamasıdır. Modern mimarisi ve kullanıcı dostu arayüzü ile firmaların iş süreçlerini dijitalleştirerek takip edilebilir, ölçeklenebilir ve analiz edilebilir hale getirir.
 
-✅ Teklif oluşturma ve takip sistemi
+---
 
-✅ Yedek iletişim kişisi (backup contact person) ekleme özelliği
+## 📌 Özellikler
 
-✅ Teklif durumu yönetimi: Onaylandı, Reddedildi vb.
+- ✅ **Müşteri Kayıt ve Yönetimi**: Yeni müşteri ekleme, güncelleme, silme işlemleri
+- ✅ **Teklif Oluşturma ve Takip Sistemi**
+- ✅ **Yedek İletişim Kişisi (Backup Contact Person) Ekleme Özelliği**
+- ✅ **Teklif Durumu Yönetimi**: Onaylandı, Reddedildi vb.
+- ✅ **Reddedilen Teklifler İçin Uyarı Sistemi**: Popup/modal ile kullanıcıyı bilgilendirme
+- ✅ **Dashboard Üzerinden Filtrelenebilir Teklif Analizleri**: Son 7 gün, 30 gün, bu yıl vb.
+- ✅ **Kullanıcı Kayıt ve Giriş İşlemleri**: Yetkilendirme ile korunan alanlar
+- ✅ **Modüler ASP.NET MVC Mimarisi**
+- ✅ **Responsive ve Kullanımı Kolay Arayüz (Bootstrap 5)**
+- ✅ **Entity Framework Core Kullanılarak Veri Erişimi**
+- ✅ **İletişim Takibi**: E-posta gönderildi / Telefonla arandı bilgileri
+- ✅ **Yeni veya Kayıtlı Müşteri Seçimi ile Teklif Oluşturma**
+- ✅ **Yedek Telefon ve Mail Bilgileri Girme Özelliği Teklif Formunda**
 
-✅ Reddedilen teklifler için kullanıcıyı bilgilendiren uyarı sistemi (popup/modal)
+---
 
-✅ Dashboard üzerinden filtrelenebilir teklif analizleri (son 7 gün, 30 gün, bu yıl vb.)
+## 📁 Proje Yapısı
 
-✅ Kullanıcı kayıt ve giriş işlemleri (giriş yapılmadan sayfalara erişim engeli)
-
-✅ ASP.NET MVC mimarisi ile modüler yapı
-
-✅ Responsive ve kullanımı kolay arayüz (Bootstrap ile)
-
-✅ Entity Framework Core kullanılarak veri erişimi
-
-✅ E-posta gönderildi / Telefonla arandı bilgileri ile iletişim takibi
-
-✅ Teklif formunda kayıtlı ya da yeni müşteri seçebilme imkanı
-
-✅ Teklif formunda müşteriyle birlikte yedek telefon ve mail bilgileri girme özelliği
-
-
-📁 Proje Yapısı
-bash
-Kopyala
-Düzenle
 Most_Crm/
 │
-├── Controllers/               # Müşteri, Teklif ve Dashboard controller’ları
-│   ├── CustomersController.cs
-│   ├── OffersController.cs
-│   └── DashboardController.cs
+├── Controllers/                       
+│   └── ContactPersonController.cs     
+│   └── CustomerController.cs          
+│   └── DashboardController.cs         
+│   └── OfferController.cs             
+│   └── UserController.cs              
 │
-├── DTO/                      # Veri taşıma (Data Transfer Object) sınıfları
-│   └── OfferDTO.cs, CustomerDTO.cs
+├── DTO/                               
+│   └── ContactPersonDTO.cs            
+│   └── CustomerDTO.cs                 
+│   └── OfferDTO.cs                    
+│   └── UserDTO.cs                     
 │
-├── Data/                     # DbContext ve bağlantı ayarları
-│   └── CRMDbContext.cs
+├── Data/                              
+│   └── CRMDbContext.cs                
 │
-├── Migrations/               # EF Core migration dosyaları
+├── Migrations/                        
+│         
 │
-├── Models/                   # Veritabanı modelleri
-│   ├── Customer.cs
-│   ├── Offer.cs
-│   └── ContactPerson.cs
+├── Models/                            
+│   └── ContactPerson.cs               
+│   └── Customer.cs                    
+│   └── Offer.cs                       
+│   └── Transaction.cs                 
+│   └── User.cs                        
 │
-├── Views/                    # Razor View’lar (Sayfa yapıları)
-│   ├── Offers/
-│   ├── Customers/
-│   └── Shared/
+├── Views/                             
+│   └── ContactPerson/                 
+│   └── Customers/                     
+│   └── Dashboard/                     
+│   └── Offers/                        
+│   └── Shared/                        
+│   └── Users/                         
 │
-├── wwwroot/                  # Statik dosyalar (CSS, JS, ikonlar)
+├── wwwroot/                           
+│   └── css/                           
+│   └── js/                            
+│   └── img/                           
 │
-├── appsettings.json          # Genel konfigürasyon dosyası
-├── appsettings.Development.json
-├── Program.cs                # Uygulama giriş noktası
-├── Most_Crm.csproj           # Proje yapılandırma dosyası
-└── Most_Crm_SLN.sln          # Çözüm dosyası (Visual Studio)
+├── appsettings.json                   
+├── appsettings.Development.json       
+├── Program.cs                         
+├── Most_Crm.csproj                    
+└── Most_Crm_SLN.sln
 
 
-🔧 Kullanılan Teknolojiler
-ASP.NET Core MVC
+## 🔧 Kullanılan Teknolojiler
 
-Entity Framework Core (Code First)
+- **ASP.NET Core MVC**
+- **Entity Framework Core (Code First)**
+- **Microsoft SQL Server**
+- **Razor Pages & Layouts**
+- **LINQ**
+- **C#**
+- **Bootstrap 5**
+- **HTML / CSS / JavaScript**
 
-Microsoft SQL Server
+---
 
-Razor Pages & Layouts
+## 🚀 Projenin Çalıştırılması
 
-LINQ
-
-C#
-
-Bootstrap 5
-
-HTML/CSS/JavaScript
-
-
-🚀 Projenin Çalıştırılması
-bash
-Kopyala
-Düzenle
+```bash
 # 1. Depoyu klonlayın
 git clone https://github.com/aybkeydn/CrmProject.git
 
 # 2. Visual Studio ile açın
 
-# 3. Paketleri geri yükleyin ve veritabanı bağlantı dizesini kendi bağlantınıza göre değiştirin ve kontrol edin
+# 3. Paketleri geri yükleyin ve veritabanı bağlantı dizesini kendi SQL Server bağlantınıza göre düzenleyin
 
 # 4. Migration'ları uygulayın (Package Manager Console):
 Update-Database
 
-# 5. Uygulamayı çalıştırın (IIS Express veya kestirme tuş: Ctrl+F5)
+# 5. Uygulamayı çalıştırın:
+Ctrl + F5 veya IIS Express üzerinden 
