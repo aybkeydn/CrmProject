@@ -1,6 +1,6 @@
-# Most CRM
+# CRM Projesi
 
-**Most CRM**, şirketlerin müşteri, teklif ve kullanıcı yönetimini kolaylaştıran, ASP.NET Core tabanlı etkili bir CRM (Müşteri İlişkileri Yönetimi) uygulamasıdır. Modern mimarisi ve kullanıcı dostu arayüzü ile firmaların iş süreçlerini dijitalleştirerek takip edilebilir, ölçeklenebilir ve analiz edilebilir hale getirir.
+Bu proje, şirketlerin müşteri, teklif ve kullanıcı yönetimini kolaylaştıran, ASP.NET Core tabanlı etkili bir CRM (Müşteri İlişkileri Yönetimi) uygulamasıdır. Modern mimarisi ve kullanıcı dostu arayüzü ile firmaların iş süreçlerini dijitalleştirerek takip edilebilir, ölçeklenebilir ve analiz edilebilir hale getirir.
 
 ---
 
