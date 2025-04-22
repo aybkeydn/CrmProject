@@ -1,0 +1,112 @@
+﻿@model Most_Crm.DTO.UserDTO
+
+@{
+    ViewData["Title"] = "Giriş Yap";
+    Layout = null; 
+}
+
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <title>Most CRM | Giriş Yap</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color:aliceblue;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 420px;
+            height: 100%;
+            max-height:430px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            padding: 30px;
+        }
+
+        .btn-login {
+            width: 100%;
+            margin-bottom: 10px;
+            background-color: deepskyblue;
+            color: white;
+        }
+
+
+        .login-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #0b1957;
+        }
+
+        h2 {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #0b1957;
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+    <div class="card">
+        <h2>🔒 Giriş Yap</h2>
+
+         <div style="min-height: 40px; margin-bottom: 10px;">
+            @if (TempData["LoginSuccess"] != null)
+            {
+            <div class="alert alert-success text-center mb-2 p-2" style="font-size: 14px;">
+                    @TempData["LoginSuccess"]
+            </div>
+            }
+            else if (!ViewData.ModelState.IsValid && ViewData.ModelState[string.Empty]?.Errors.Count > 0)
+            {
+            <div class="alert alert-danger text-center mb-2 p-2" style="font-size: 14px;">
+                    @Html.Raw(ViewData.ModelState[string.Empty]?.Errors.FirstOrDefault()?.ErrorMessage)
+            </div>
+            }
+         </div>
+
+
+
+        <form asp-action="Login" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="form-group mb-3">
+                <label>E-Posta</label>
+                <input asp-for="Email" class="form-control" placeholder="E-postanız" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-4">
+                <label>Şifre</label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Şifreniz" required />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-login">Giriş Yap</button>
+            <a asp-controller="User" asp-action="Register" class="login-link">Henüz hesabınız yok mu? Kayıt Olun</a>
+        </form>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+</body>
+</html>

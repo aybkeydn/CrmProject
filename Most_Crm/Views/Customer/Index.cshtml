@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Most_Crm.Models.Customer>
+
+@{
+    ViewData["Title"] = "Müşteri Listesi";
+}
+
+<div class="container table-responsive-custom">
+    <h2 class="table-title">Müşteri Listesi</h2>
+
+    <p>
+        <a asp-action="Create" class="btn btn-success">Yeni Müşteri Ekle</a>
+    </p>
+
+    
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-info">
+                <tr>
+                    <th>Şirket adı</th>
+                    <th>Cari Kod</th>
+                    <th class="d-none d-md-table-cell">Email</th>
+                    <th >Telefon</th>
+                    <th >Sektör</th>
+                    <th class="d-none d-md-table-cell">Şirket</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.NameSurname</td>
+                        <td>@item.CariKod</td>
+                        <td class="d-none d-md-table-cell">@item.Email</td>
+                        <td >@item.PhoneNumber</td>
+                        <td >@item.Sector</td>
+                        <td class="d-none d-md-table-cell">@item.CompanyName</td>
+                        <td>
+                            <a href="tel:@item.PhoneNumber" class="btn btn-warning">
+                                📞 Ara
+                            </a>
+
+                            <a asp-action="Details" asp-route-id="@item.CustomerID" class="btn btn-info">Detaylar</a>
+                            <a asp-action="Edit" asp-route-id="@item.CustomerID" class="btn btn-primary">Düzenle</a>
+                            <a asp-action="Delete" asp-route-id="@item.CustomerID" class="btn btn-danger">Sil</a>
+                        </td>
+                    </tr>
+                 }
+              
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .table-title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .table-responsive-custom {
+        background-color: #ffffff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        padding: 25px;
+        margin-top: 40px;
+    }
+
+    .table tbody tr:hover {
+        background: #f2f7ff;
+    }
+
+    .btn {
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    .btn-info {
+        background: deepskyblue;
+        border: none;
+    }
+
+    .btn-primary {
+        background: darkblue;
+        border: none;
+    }
+
+    .btn-danger {
+        background: #e74c3c;
+        border: none;
+    }
+
+    .btn-success:hover {
+        background: deepskyblue;
+    }
+</style>

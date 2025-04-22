@@ -1,0 +1,113 @@
+﻿@model Most_Crm.DTOs.OfferDTO
+
+@{
+    ViewData["Title"] = "Teklif Düzenle";
+}
+
+<h2>Teklif Düzenle</h2>
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="OfferID" />
+
+    <div class="form-group">
+        <label>Müşteri</label>
+        <input type="text" class="form-control" value="@ViewBag.CustomerName" readonly />
+        <input type="hidden" asp-for="CustomerID" />
+    </div>
+
+
+    <div class="form-group">
+        <label>Teklif Durumu</label>
+        <input asp-for="OfferStatus" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Reddedilme Sebebi</label>
+        <input asp-for="OfferRejectionReason" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Country">Ülke</label>
+        <input type="text" name="Country" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="City">Şehir</label>
+        <input type="text" name="City" class="form-control" required />
+    </div>
+
+
+    <div class="form-group">
+        <label>Açıklama</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Grup</label>
+        <input asp-for="Group" class="form-control" />
+    </div>
+
+
+    <div class="form-group">
+        <label>Firma Adı</label>
+        <input asp-for="CompanyName" class="form-control" />
+    </div>
+
+
+  
+
+    <div class="form-group">
+        <label>Kaynak</label>
+        <select asp-for="Source" class="form-control">
+            <option value="">-- Seçiniz --</option>
+            <option value="Google">Google</option>
+            <option value="Reklamlar">Reklamlar</option>
+            <option value="Sosyal Medya">Sosyal Medya</option>
+            <option value="Arkadaş Tavsiyesi">Arkadaş Tavsiyesi</option>
+            <option value="Diğer">Diğer</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Teklif Tarihi</label>
+        <input asp-for="OfferDate" type="date" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Tutar</label>
+        <input asp-for="Amount" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Son Tarih</label>
+        <input asp-for="DueDate" type="date" class="form-control" />
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>
+
+        <style>
+    /* Form Elemanları */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 5px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+    }
+
+</style>

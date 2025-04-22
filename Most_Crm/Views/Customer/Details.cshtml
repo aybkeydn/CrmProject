@@ -1,0 +1,106 @@
+﻿@model Most_Crm.DTOs.CustomerDTO
+
+@{
+    ViewData["Title"] = "Müşteri Detayları";
+}
+
+<h2 style=" font-size: 32px;
+        font-weight: bold;">Müşteri Detayları 🕵🏻​</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h4>@Model.NameSurname</h4>
+    </div>
+    <div class="card-body">
+        <div class="left-side">
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Telefon:</strong> @Model.PhoneNumber</p>
+        <p><strong>Çalıştığı Sektör:</strong> @Model.Sector</p>
+        <p><strong>Ülke:</strong>@Model.Country</p>
+        </div>
+        <div class="right-side">
+        <p><strong>Şehir:</strong> @Model.City</p>
+        <p><strong>Durum:</strong> @Model.Status</p>
+        <p><strong>Şirket:</strong> @Model.CompanyName</p>
+        <p><strong>Müşteri Tipi:</strong> @Model.CustomerType</p>
+        </div>
+    </div>
+</div>
+
+<br/>
+
+<h3 style="font-weight: bold;">Teklif Geçmişi 🔙​</h3>
+
+    
+<table class="table">
+    <thead class="table table-success">
+        <tr>
+            <th>Teklif Durumu</th>
+            <th>Reddedilme Nedeni</th>
+            <th>Tarih</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var offer in Model.Offers)
+        {
+            <tr>
+                <td>@offer.OfferStatus</td>
+                <td>@offer.OfferRejectionReason</td>
+                <td>@offer.CreatedAt?.ToString("dd.MM.yyy HH:mm")</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+</br>
+
+<h3 style="font-weight: bold;">Müşteri Aktiviteleri 📉​</h3>
+
+<table class="table">
+     <thead class="table table-danger">
+        <tr>
+            <th>Aktivite</th>
+            <th>Detay</th>
+            <th>Tarih</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>E-posta Gönderildi mi?</td>
+            <td style="color: @(Model.EmailSent ? "green" : "red")">
+                @(Model.EmailSent ? "Evet" : "Hayır")
+            </td>
+            <td> @(Model.EmailSentAt?.ToString("dd.MM.yyy HH:mm"))</td>
+            
+        </tr>
+        <tr>
+            <td>Telefon Araması Yapıldı mı?</td>
+            <td style="color: @(Model.PhoneCallMade ? "green" : "red")">
+                @(Model.PhoneCallMade ? "Evet" : "Hayır")
+            </td>
+            <td> @(Model.PhoneCallAt?.ToString("dd.MM.yyy HH:mm"))</td>
+        </tr>
+      
+
+    </tbody>
+
+</table>
+
+<a asp-action="Edit" asp-route-id="@Model.CustomerID" class="btn btn-info">Müşteri Güncelle</a>
+
+<a asp-action="Index" class="btn btn-primary">Geri Dön</a>
+
+<style>
+
+    .left-side{
+        float:left;
+    }
+
+    .right-side{
+        float:right;
+        margin-right:500px;
+    }
+
+</style>

@@ -1,0 +1,16 @@
+﻿@model Most_Crm.Models.Customer
+
+@{
+    ViewData["Title"] = "Müşteri Sil";
+}
+
+<h2>Müşteri Sil</h2>
+
+<h4>@Model.NameSurname adlı müşteriyi silmek istediğinizden emin misiniz?</h4>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="CustomerID" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>
+

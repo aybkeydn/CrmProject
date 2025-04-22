@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Most_Crm.Models.User>
+
+@{
+    ViewData["Title"] = "Onay Bekleyenler";
+}
+
+
+<div class="container table-responsive-custom">
+ <h2 class="table-title">Onay Bekleyen Kullanıcılar</h2>
+
+
+ <div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Ad Soyad</th>
+            <th>E-Posta</th>
+            <th>Onay Durumu</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.FullName</td>
+                <td>@user.Email</td>
+                <td>@(user.IsConfirmed ? "Onaylandı" : "Bekliyor")</td>
+                        <td>
+                            @if (!user.IsConfirmed && string.IsNullOrEmpty(user.RejectionReason))
+                            {
+            <form asp-action="ConfirmUser" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="@user.UserID" />
+                <button type="submit" class="btn btn-success btn-sm">Onayla</button>
+            </form>
+
+            <form asp-action="RejectUser" method="post" class="d-inline-flex align-items-center" style="gap: 5px;">
+                                    @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="@user.UserID" />
+                <input type="text" name="reason" class="form-control form-control-sm" placeholder="Sebep yazınız"
+                       style="width: 200px;" required />
+                <button type="submit" class="btn btn-danger btn-sm">Reddet</button>
+            </form>
+                            }
+                            else if (!user.IsConfirmed && !string.IsNullOrEmpty(user.RejectionReason))
+                            {
+            <div class="d-flex flex-column align-items-start">
+                <span class="badge bg-danger mb-1 px-2 py-1">❌ Reddedildi</span>
+                <small class="text-muted">Sebep: @user.RejectionReason</small>
+                                   
+            </div>
+                            }
+                            else
+                            {
+            <span class="text-success">✅ Onaylandı</span>
+                            }
+
+                        </td>
+
+            </tr>
+        }
+    </tbody>
+  </table>
+ </div>
+</div>
+
+<style>
+    .table-title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .table-responsive-custom {
+        background-color: #ffffff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        padding: 25px;
+        margin-top: 40px;
+    }
+
+    .table thead {
+        text-align: left;
+    }
+
+    .table tbody tr:hover {
+        background: #f2f7ff;
+    }
+
+    .btn {
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    .btn-success {
+        background: darkblue;
+        border: none;
+    }
+
+        .btn-success:hover {
+            background: deepskyblue;
+        }
+
+    .btn-danger {
+        background: #e74c3c;
+        border: none;
+    }
+</style>

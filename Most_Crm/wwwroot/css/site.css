@@ -1,0 +1,80 @@
+html {
+    font-size: 14px;
+}
+
+
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: deepskyblue 0 0 0 0.1rem white, 0 0 0 0.25rem;
+}
+
+.btn-success {
+    background-color: darkblue;
+}
+
+    .btn-success:hover {
+        background-color: white;
+    }
+
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.card-header {
+    background-color: deepskyblue;
+    color: white;
+}
+
+.navbar-brand {
+    font-size: 2rem;
+    color: #ffffff;
+    position: relative;
+    display: inline-block;
+}
+
+
+
+
+
+.nav-link {
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    font-weight: 700;
+}
+
+    .nav-link:hover {
+        transform: scale(1.1); /* Hover yapýnca %10 büyüsün */
+        color: #66b3ff !important;
+    }
+
+footer {
+    background-color: darkblue;
+}
+
+
+
+@keyframes gradient-animation {
+    0% {
+        background: radial-gradient(circle, rgba(19,139,208,1) 0%, rgba(239,253,255,1) 100%);
+    }
+
+    50% {
+        background: radial-gradient(circle, rgba(239,253,255,1) 0%, rgba(19,139,208,1) 100%);
+    }
+
+    100% {
+        background: radial-gradient(circle, rgba(19,139,208,1) 0%, rgba(239,253,255,1) 100%);
+    }
+}
+

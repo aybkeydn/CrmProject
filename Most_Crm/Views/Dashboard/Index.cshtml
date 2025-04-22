@@ -1,0 +1,312 @@
+﻿@{
+    ViewData["Title"] = "CRM Dashboard";
+}
+
+
+
+
+<div class="dashboard-header d-flex justify-content-between align-items-center mb-4" style="margin-top: 40px; background-color: skyblue; border-radius: 12px; padding: 15px 30px;">
+    <!-- Filtre Dropdown -->
+    <div class="dropdown" style="background-color:none">
+        <button class="btn btn-light dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false" >
+            <i class="bi bi-funnel-fill"></i> Filtrele
+        </button>
+
+        <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+            <li><a class="dropdown-item" href="?dateFilter=all">Tümü</a></li>
+            <li><a class="dropdown-item" href="?dateFilter=today">Bugün</a></li>
+            <li><a class="dropdown-item" href="?dateFilter=last7">Son 7 Gün</a></li>
+            <li><a class="dropdown-item" href="?dateFilter=last30">Son 30 Gün</a></li>
+            <li><a class="dropdown-item" href="?dateFilter=thisyear">Bu Yıl</a></li>
+        </ul>
+    </div>
+
+    <!-- Başlık -->
+    <h2 class="text-white m-0 text-center flex-grow-1" style="letter-spacing: 5px;">
+        Most CRM
+    </h2>
+
+    <!-- Denge için boş div (dropdown ile başlığı ortalamak için) -->
+    <div style="width: 140px;"></div>
+</div>
+
+
+<div class="row">
+    <!-- Toplam Müşteriler -->
+   
+    <div class="col-md-3">
+        <a href="/Customer/Index" style="text-decoration:none">
+         <div class="dashboard-box total-customers">
+            <div class="icon-circle">
+                <span>👥</span>
+            </div>
+            <div class="box-content">
+                <h5>Toplam Müşteriler</h5>
+                <span class="count">@ViewBag.TotalCustomers</span>
+            </div>
+         </div>
+        </a>
+    </div>
+
+    <!-- Onaylanan Teklifler -->
+
+    <div class="col-md-3">
+        <a href="/Offer/Index" style="text-decoration:none">
+        <div class="dashboard-box confirmed">
+            <div class="icon-circle">
+                <span>✔️</span>
+            </div>
+            <div class="box-content">
+                <h5>Onaylanan Teklifler</h5>
+                <span class="count">@ViewBag.ConfirmedOffers</span>
+
+                <h6>
+                    Toplam Fiyat:
+                    <span class="count">
+                        @String.Format("{0:N0} ₺", ViewBag.ConfirmedTotalAmount)
+                    </span>
+                </h6>
+            </div>
+        </div>
+        </a>
+    </div>
+
+    <!-- Bekleyen Teklifler -->
+    <div class="col-md-3">
+        <a href="/Offer/Index" style="text-decoration:none">
+         <div class="dashboard-box pending">
+            <div class="icon-circle">
+                <span>⏰</span>
+            </div>
+            <div class="box-content">
+                <h5>Bekleyen Teklifler</h5>
+                <span class="count">@ViewBag.PendingOffers</span>
+                <h6>Toplam fiyat :
+                    <span class="count">
+                        @String.Format("{0:N0} ₺", ViewBag.PendingTotalAmount
+                       )
+                    </span>
+                </h6>
+            </div>
+         </div>
+        </a>
+    </div>
+
+    <!-- Reddedilen Teklifler -->
+    <div class="col-md-3">
+      <a href="/Offer/Index" style="text-decoration:none">
+        <div class="dashboard-box rejected">
+            <div class="icon-circle">
+                <span>❌</span>
+            </div>
+            <div class="box-content">
+                <h5>Reddedilen Teklifler</h5>
+                <span class="count">@ViewBag.RejectedOffers</span>
+               
+                <h6>Toplam fiyat :
+                    <span class="count">
+                        @String.Format("{0:N0} ₺", ViewBag.RejectedTotalAmount
+                                 )
+                    </span>
+                </h6>
+            </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Most Idea Toplam Müşteri Sayısı -->
+    <div class="col-md-6">
+       <a href="/Customer/Index" style="text-decoration:none">
+        <div class="dashboard-box most-idea">
+            <div class="icon-circle">
+                <span>💭​</span>
+            </div>
+            <div class="box-content">
+                <h5>Most Idea Toplam Müşteri Sayısı</h5>
+                <span class="count">@ViewBag.MostIdeaCustomers</span>
+            </div>
+        </div>
+        </a>
+    </div>
+
+    <!-- Most Digital Toplam Müşteri Sayısı -->
+    <div class="col-md-6">
+       <a href="/Customer/Index" style="text-decoration:none">
+        <div class="dashboard-box most-digital">
+            <div class="icon-circle">
+                <span>📱</span>
+            </div>
+            <div class="box-content">
+                <h5>Most Digital Toplam Müşteri Sayısı</h5>
+                <span class="count">@ViewBag.MostDigitalCustomers</span>
+            </div>
+        </div>
+       </a>
+    </div>
+
+
+
+    <div class="row" style="margin-top: 90px;">
+        <div class="col-md-12">
+            <h4 style=" font-size: 32px;
+                      font-weight: bold;
+                       ">
+                🕓 Güncel Değişiklikler
+            </h4>
+            <table class="table table-bordered table-striped ">
+                <thead class="thead-dark table-info">
+                    <tr>
+                        <th>Şirket</th>
+                        <th>İşlem Açıklaması</th>
+                        <th>Yapan Kişi</th>
+                        <th>Tarih</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var t in ViewBag.RecentTransactions)
+                    {
+                        <tr>
+                            <td>@t.CompanyName</td>
+                            <td>@t.Description</td>
+                            <td>@t.PerformedBy</td>
+                            <td>@(((DateTime)t.CreatedAt).ToString("dd.MM.yyyy HH:mm"))</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<style>
+    .dashboard-box {
+        display: flex;
+        position: relative;
+        top: 80px;
+        height: 140px;
+        align-items: center;
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .dashboard-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+    .icon-circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        margin-right: 12px;
+    }
+
+    .box-content h5 {
+        margin: 0;
+        font-weight: 600;
+        color: #555;
+    }
+
+    .box-content .count {
+        font-size: 24px;
+        font-weight: bold;
+        color: #222;
+    }
+
+    /* Özel Renk Temaları */
+    .total-customers .icon-circle {
+        background-color: rgba(52, 152, 219, 0.15);
+        color: #3498db;
+    }
+
+    .confirmed .icon-circle {
+        background-color: rgba(46, 204, 113, 0.15);
+        color: #2ecc71;
+    }
+
+    .pending .icon-circle {
+        background-color: rgba(241, 196, 15, 0.15);
+        color: #f1c40f;
+    }
+
+    .rejected .icon-circle {
+        background-color: rgba(231, 76, 60, 0.15);
+        color: #e74c3c;
+    }
+
+    body {
+        background-color: #f8f9fc;
+    }
+
+    .most-idea .icon-circle {
+        background-color: rgba(41, 128, 185, 0.15);
+        color: #2980b9;
+    }
+
+    .most-digital .icon-circle {
+        background-color: rgba(155, 89, 182, 0.15);
+        color: #9b59b6;
+    }
+
+    .task-container {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .task-list {
+        margin-top: 10px;
+    }
+
+    .task-item {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .task-checkbox {
+        margin-right: 10px;
+    }
+
+    .task-meta {
+        font-size: 12px;
+        color: gray;
+    }
+
+    .detail-link {
+        color: #2ecc71;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+</style>
+
+<script>
+    function toggleTask(taskId, isChecked) {
+        fetch('/Dashboard/ToggleTransactionStatus/' + taskId, {
+            method: 'POST'
+        }).then(response => response.json())
+          .then(data => console.log(data));
+    }
+</script>

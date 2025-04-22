@@ -1,0 +1,405 @@
+﻿@model Most_Crm.DTOs.OfferDTO
+
+@{
+    ViewData["Title"] = "Yeni Teklif Ekle";
+}
+
+<div class="form-container">
+    <h2 class="form-title">
+        <span>Yeni Teklif Ekle</span> <span class="add-icon"></span>
+    </h2>
+
+
+    <form asp-action="Create">
+
+    <div class="registered-customer-section">
+       
+
+            <div class="form-group">
+                <h3 class="section-title">👤 Müşteri Tipi</h3>
+                <select id="customerType" class="form-control">
+                    <option value="registered">Kayıtlı Müşteri</option>
+                    <option value="new">Yeni Müşteri</option>
+                </select>
+            </div>
+
+            <div id="registeredCustomerSection" class="form-section">
+                <h3 class="section-title"> Müşteri Bilgisi (Kayıtlı)</h3>
+                
+               <div class="form-group">
+    <label>Müşteri Seç</label>
+    <select id="customerSelect" asp-for="CustomerID" class="form-control ">
+        @foreach (var customer in ViewBag.Customers)
+        {
+            <option value="@customer.CustomerID"
+                    data-phone="@customer.PhoneNumber"
+                    data-email="@customer.Email"
+                    data-company="@customer.CompanyName">
+                @customer.NameSurname
+            </option>
+        }
+    </select>
+</div>
+
+
+                <div class="form-group">
+                    <label>Telefon</label>
+                    <input type="text" id="phone" class="form-control" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" id="email" class="form-control" readonly />
+                </div>
+
+        
+
+            </div>
+
+            <div id="newCustomerSection" class="form-section" style="display:none;">
+                <h3 class="section-title">📝 Müşteri Bilgisi (Yeni)</h3>
+                <div class="form-group">
+                    <label for="NameSurname">Ad Soyad</label>
+                    <input type="text" name="NameSurname" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="PhoneNumber">Telefon</label>
+                    <input type="text" name="PhoneNumber" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="Email">E-posta</label>
+                    <input type="email" name="Email" class="form-control" />
+                </div>
+               
+            </div>
+
+
+            <div class="form-section">
+                <h3 class="section-title">📞 Yedek İletişim Kişisi</h3>
+
+                <div class="form-group">
+                    <label>Yedek Kişi Adı</label>
+                    <input asp-for="ContactPerson" class="form-control" placeholder="İkinci kişiyi giriniz..." />
+                </div>
+                
+               
+            </div>
+         
+
+            <!-- Teklif Durumu Bölümü -->
+            <div class="form-section">
+                <h3 class="section-title"> Teklif Durumu</h3>
+
+
+                <div class="form-group">
+                    
+                    <select asp-for="OfferStatus" class="form-control">
+                        <option>Beklemede</option>
+                        <option>Onaylandı</option>
+                        <option>Reddedildi</option>
+                    </select>
+                </div>
+
+                <!-- Reddedilme Nedeni -->
+                <div class="form-section">
+                    <h3 class="section-title">❌ Reddedilme Nedeni</h3>
+
+                    <div class="form-group">
+                        
+                        <input asp-for="OfferRejectionReason" class="form-control" placeholder="Eğer varsa nedeni giriniz..." />
+                    </div>
+
+                    <!-- Firma Adı -->
+                    <div class="form-section">
+                        <h3 class="section-title"> Firma Adı </h3>
+                        <div class="form-group">
+                            <input asp-for="CompanyName" class="form-control" placeholder="eğer firma ise firma adını giriniz..." />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Country">Ülke</label>
+                        <input type="text" name="Country" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="City">Şehir</label>
+                        <input type="text" name="City" class="form-control" required />
+                    </div>
+              
+                        <!-- Açıklama -->
+                        <div class="form-section">
+                            <h3 class="section-title"> Açıklama </h3>
+                            <div class="form-group">
+                                <input asp-for="Description" class="form-control" />
+                            </div>
+                        </div>
+
+                    <!-- fiyat -->
+                    <div class="form-section">
+                        <h3 class="section-title"> Fiyat </h3>
+                        <div class="form-group">
+                            <input asp-for="Amount" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kaynak</label>
+                        <select asp-for="Source" class="form-control">
+                            <option value="">-- Seçiniz --</option>
+                            <option value="Google">Google</option>
+                            <option value="Reklamlar">Reklamlar</option>
+                            <option value="Sosyal Medya">Sosyal Medya</option>
+                            <option value="Arkadaş Tavsiyesi">Arkadaş Tavsiyesi</option>
+                            <option value="Diğer">Diğer</option>
+                        </select>
+
+                    </div>
+
+
+                        <!-- Grup -->
+                        <div class="form-section">
+                            <h3 class="section-title"> Grup </h3>
+                            <div class="form-group">
+                                <input asp-for="Group" class="form-control" />
+                            </div>
+                        </div>
+
+                      
+
+                       
+
+                        <!-- son tarih -->
+                        <div class="form-section">
+                            <h3 class="section-title"> Son Tarih </h3>
+                            <div class="form-group">
+                                <input asp-for="DueDate" class="form-control" />
+                            </div>
+                        </div>
+
+                   
+
+
+      </div>
+
+    </div>
+
+            <input type="hidden" name="FollowUp" id="FollowUp" value="false" />
+
+
+               <button type="submit" class="btn btn-primary">💾 Kaydet</button>
+    </form>
+</div>
+
+<style>
+
+    /* Kayıtlı müşteri bölümü */
+    .registered-customer-section {
+        background-color: #e6f7ff; /* Açık mavi */
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+
+    /* Kayıtlı olmayan müşteri bölümü */
+    .unregistered-customer-section {
+        background-color: #fff5e6; /* Açık turuncu / sarı ton */
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+
+    .form-container {
+        position: relative;
+        top: 20px;
+    }
+
+
+    /* Başlık Stili */
+    .form-title {
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* Bölüm Başlıkları */
+    .section-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #4a4a4a;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+    }
+
+
+
+
+
+    .add-icon {
+        font-size: 24px;
+        color: #6a0dad;
+    }
+
+    /* Form Elemanları */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 5px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+    }
+
+
+
+    /* Buton Stili */
+    .btn-primary {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        background: linear-gradient(to right, darkblue, skyblue);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right,skyblue, darkblue );
+        }
+
+
+    #registeredCustomerSection {
+        background-color: #e6f7ff;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    #newCustomerSection {
+        background-color: #fff5e6;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () { //sayfa tamamen yüklendikten sonra kodun çalışması
+        const statusSelect = document.getElementById("OfferStatus"); //teklif durumu türlerini bir değişkene bağlar
+        const rejectionInput = document.getElementById("OfferRejectionReason"); //reddedilme nedeni input alanını bir değişkene bağlar
+         const followUpInput = document.getElementById("FollowUp");
+
+        function toggleRejectionReason() {
+            const status = statusSelect.value;
+            if (status === "Reddedildi") {
+                rejectionInput.disabled = false;
+
+                 // ✅ Kullanıcıya basit soru sor
+                const confirmFollowUp = confirm("Bu müşteriyi daha sonra takip etmek ister misiniz?");
+                followUpInput.value = confirmFollowUp ? "true" : "false";
+
+            } else {
+                rejectionInput.disabled = true;
+                rejectionInput.value = ""; //kullanıcı önce yazıp sonra seçimi değiştirdiyse boşaltmak için
+                 followUpInput.value = "false"; // Diğer durumlarda sıfırla
+            }
+        }
+
+        //Sayfa yüklendiğinde çalıştır
+        toggleRejectionReason();
+
+        //Kullanıcı dropdown'da bir değişiklik yaptığında bu fonksiyonu tekrar çalıştır.
+        statusSelect.addEventListener("change", toggleRejectionReason);
+    });
+
+     document.getElementById("customerType").addEventListener("change", function () {
+        const selected = this.value;
+        const registeredSection = document.getElementById("registeredCustomerSection");
+        const newSection = document.getElementById("newCustomerSection");
+
+        if (selected === "registered") {
+            registeredSection.style.display = "block";
+            newSection.style.display = "none";
+        } else {
+            registeredSection.style.display = "none";
+            newSection.style.display = "block";
+        }
+    });
+
+    // Sayfa yüklendiğinde ilk durum
+    window.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("customerType").dispatchEvent(new Event("change"));
+    });
+
+
+  
+    document.addEventListener('DOMContentLoaded', function () {
+        const customerSelect = document.getElementById('customerSelect');
+        const phoneInput = document.getElementById('phone');
+        const emailInput = document.getElementById('email');
+        const companyInput = document.getElementById('company');
+
+        customerSelect.addEventListener('change', function () {
+            const selectedOption = this.options[this.selectedIndex];
+
+            const phone = selectedOption.getAttribute('data-phone') || '';
+            const email = selectedOption.getAttribute('data-email') || '';
+            const company = selectedOption.getAttribute('data-company') || '';
+
+            phoneInput.value = phone;
+            emailInput.value = email;
+            companyInput.value = company;
+        });
+    });
+
+
+    document.getElementById("customerType").addEventListener("change", function () {
+        const selected = this.value;
+        const customerSelect = document.getElementById("customerSelect");
+
+        if (selected === "registered") {
+            customerSelect.disabled = false;
+        } else {
+            customerSelect.disabled = true;
+            customerSelect.selectedIndex = -1; // Seçimi sıfırla
+        }
+    });
+
+    // Sayfa ilk açıldığında doğru ayarla
+    window.addEventListener("DOMContentLoaded", function () {
+        const customerType = document.getElementById("customerType").value;
+        const customerSelect = document.getElementById("customerSelect");
+
+        if (customerType === "new") {
+            customerSelect.disabled = true;
+            customerSelect.selectedIndex = -1;
+        }
+    });
+
+
+
+
+</script>
+
+

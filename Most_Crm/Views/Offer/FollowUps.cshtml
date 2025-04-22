@@ -1,0 +1,78 @@
+﻿@model List<Most_Crm.Models.Offer>
+
+@{
+    ViewData["Title"] = "Reddedilen teklifleri takip et";
+}
+
+<div class="container table-responsive-custom">
+<div class="form-container">
+    <h2 class="form-title">
+        <span>📌 Reddedilen Teklifler</span> <span class="add-icon"></span>
+    </h2>
+
+ <div class="table-responsive">
+   <table class="table table-bordered">
+    <thead class="table-danger">
+        <tr>
+            <th>Müşteri</th>
+            <th>Durum</th>
+            <th>Telefon</th>
+            <th>Email</th>
+            <th>Reddedilme nedeni</th>
+            <th>Teklif Tarihi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var offer in Model)
+        {
+            <tr>
+                <td>@offer.Customer?.NameSurname</td>
+                <td>@offer.OfferStatus</td>
+                    <td>@offer.Customer?.PhoneNumber</td> 
+                    <td>@offer.Customer?.Email</td>
+                <td>@offer.OfferRejectionReason</td>
+                <td>@offer.DueDate?.ToString("dd.MM.yyyy")</td>
+            </tr>
+        }
+     </tbody>
+   </table>
+</div>
+</div>
+</div>
+
+<style>
+    .form-container {
+        position: relative;
+        top: 20px;
+    }
+
+
+    /* Başlık Stili */
+    .form-title {
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+         .table-responsive-custom {
+        background-color: #ffffff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        padding: 25px;
+        margin-top: 40px;
+    }
+
+    .table thead {
+        text-align: left;
+    }
+
+    .table tbody tr:hover {
+        background: #f2f7ff;
+    }
+    
+</style>

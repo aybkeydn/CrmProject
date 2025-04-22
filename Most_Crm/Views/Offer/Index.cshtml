@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Most_Crm.Models.Offer>
+
+@{
+    ViewData["Title"] = "Teklif Listesi";
+}
+
+<div class="container table-responsive-custom">
+    <h2 class="table-title">Teklifler</h2>
+
+    <p>
+        <a asp-action="Create" class="btn btn-success">Yeni Teklif Ekle</a>
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-info">
+                <tr>
+                    <th>Müşteri</th>
+                    <th>Durum</th>
+                    <th>Fiyat</th>
+                    <th class="d-none d-md-table-cell">Reddedilme Nedeni</th>
+                    <th class="d-none d-md-table-cell">Tarih</th>
+                    <th> Diğer iletişim </th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var offer in Model)
+                {
+                    <tr>
+                        <td>@offer.Customer.NameSurname</td>
+                        <td>@offer.OfferStatus</td>
+                        <td>@offer.Amount</td>
+                        <td class="d-none d-md-table-cell">@offer.OfferRejectionReason</td>
+                        <td class="d-none d-md-table-cell">@offer.CreatedAt.ToShortDateString()</td>
+                        <td>@offer.ContactPerson </td>
+                        <td>
+                            <a href="tel:@offer.Customer.PhoneNumber" class="btn btn-warning btn-sm ">
+                                📞 Ara
+                            </a>
+
+                            <a asp-action="Edit" asp-route-id="@offer.OfferID" class="btn btn-sm btn-info">Düzenle</a>
+                            <a asp-action="Delete" asp-route-id="@offer.OfferID" class="btn btn-sm btn-danger">Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<style>
+    .table-title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .table-responsive-custom {
+        background-color: #ffffff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        padding: 25px;
+        margin-top: 40px;
+    }
+
+    .table thead {
+        text-align: left;
+    }
+
+    .table tbody tr:hover {
+        background: #f2f7ff;
+    }
+
+    .btn {
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    .btn-success {
+        background: darkblue;
+        border: none;
+    }
+
+        .btn-success:hover {
+            background: deepskyblue;
+        }
+
+    .btn-danger {
+        background: #e74c3c;
+        border: none;
+    }
+</style>
