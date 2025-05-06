@@ -35,7 +35,7 @@ Bu proje, şirketlerin müşteri, teklif ve kullanıcı yönetimini kolaylaştı
 ## 📁 Proje Yapısı
 
 Most_Crm/
-│
+
 ├── Controllers/                       
 │   └── ContactPersonController.cs     
 │   └── CustomerController.cs          
