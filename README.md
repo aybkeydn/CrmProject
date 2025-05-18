@@ -2,7 +2,6 @@
 
 Bu proje, şirketlerin müşteri, teklif ve kullanıcı yönetimini kolaylaştıran, ASP.NET Core tabanlı etkili bir CRM (Müşteri İlişkileri Yönetimi) uygulamasıdır. Modern mimarisi ve kullanıcı dostu arayüzü ile firmaların iş süreçlerini dijitalleştirerek takip edilebilir, ölçeklenebilir ve analiz edilebilir hale getirir.
 
-![image](https://github.com/user-attachments/assets/7d0c6c89-5b12-4fba-97f1-7da59fb57460)
 ![image](https://github.com/user-attachments/assets/a9cc0123-8ffc-4291-ab2f-7c7638e20c7a)
 ![image](https://github.com/user-attachments/assets/75e73395-cc90-4f90-b2e2-9d8092152fa0)
 ![image](https://github.com/user-attachments/assets/90f0441b-1f2b-4669-8189-7eda470508ae)
